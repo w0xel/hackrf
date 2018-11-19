@@ -24,6 +24,7 @@
 set(INSTALL_DEFAULT_BINDIR "bin" CACHE STRING "Appended to CMAKE_INSTALL_PREFIX")
 
 find_package(FFTW REQUIRED)
+include_directories(${FFTW_INCLUDES})
 include_directories(${FFTW_INCLUDE_DIRS})
 link_directories(${FFTW_LIBRARY_DIRS})
 
@@ -44,7 +45,7 @@ if(MSVC)
 	)
 	LIST(APPEND TOOLS_LINK_LIBS ${FFTW_LIBRARIES})
 else()
-    LIST(APPEND TOOLS_LINK_LIBS m fftw3f)
+    LIST(APPEND TOOLS_LINK_LIBS m ${FFTW_LIBRARIES})
 endif()
 
 if(NOT libhackrf_SOURCE_DIR)
